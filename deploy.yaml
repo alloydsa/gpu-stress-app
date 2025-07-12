@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: newtry
+  name: newtry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: newtry
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: newtry
+    spec:
+      containers:
+      - image: xxxxx/gpu-stress-test:latest
+        name: gpu-stress-test
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+        command: ["python3"]
+        args: ["stress.py", "-r", "3600"]
+status: {}
